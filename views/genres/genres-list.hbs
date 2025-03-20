@@ -1,0 +1,32 @@
+<h1>Lista de Generos</h1>
+
+{{#if hasGenres}}
+<div class="row">
+    {{#each g}}
+    <div class="col-12 col-sm-4 mt-2">
+        <div class="card">
+            <div class="card-body text-center">
+                {{this.name}}
+                <hr>
+                <div class="mt-2">
+                    <a href="/admin/genres/edit-genre/{{this.id}}" class="btn btn-primary float-end">Edit</a>
+                    <form method="post" action="/admin/genres/genre-delete" class="form-delete">
+                        <input type="hidden" value="{{this.id}}" name="GenreId" />
+                        <button type="submit" class="btn btn-danger float-end me-2 delete-genre">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+{{else}}
+<h1 class="mt-3 text-center">Ningun Genero Encontrado!</h1>
+{{/if}}
+
+<div class="row mt-2 mb-2 mt-4">
+    <div class="col-12 col-sm-4">
+        <a href="/admin/genres/add-genre" class="btn btn-success">Agregar Genero</a>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<h1>Lista de Series</h1>
+
+<form method="GET" action="/" class="mb-3">
+  <div class="row">
+    <div class="col-6">
+      <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="Buscar serie por nombre..." value="{{searchTerm}}" />
+        <button type="submit" class="btn btn-primary">Buscar</button>
+      </div>
+    </div>
+
+    <div class="col-6">
+      <div class="input-group">
+        <select name="genreFilter" class="form-select">
+          <option value="">-- Seleccionar Genero --</option>
+          {{#each genres}}
+            <option value="{{this.name}}" {{#if (eq this.name ../selectedGenre)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+        <button type="submit" class="btn btn-success">Filtrar</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+{{#if hasSeries}}
+
+<div class="row">
+
+  {{#each s}}
+
+  <div class="col-12 col-sm-4 mt-2">
+    <div class="card">
+      <img src="{{this.imageURL}}" class="card-img-top img-size" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">Nombre: {{this.name}}</h5>
+        <p class="card-text">Genero: {{this.genreName}}</p>
+        <a href="/serie-detail/{{this.id}}" class="btn btn-primary">Details</a>
+      </div>
+    </div>
+  </div>
+
+  {{/each}}
+
+</div>
+
+{{else}}
+
+<h1>No Series found!</h1>
+
+{{/if}}

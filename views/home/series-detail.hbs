@@ -1,0 +1,25 @@
+<div class="row mb-3">
+    <div class="col-12 col-sm-4">
+        <a href="/" class="btn btn-warning"> Back to home </a>
+    </div>
+</div>
+{{#if hasSerie}}
+
+<h1>{{serie.name}}</h1>
+
+<div class="row">
+    <div class="col-12 col-md-8">
+        <div class="ratio ratio-16x9">
+            <iframe width="560" height="315" src="{{serie.embeddedVideoURL}}"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+{{else}}
+
+<h1>product not found!</h1>
+
+{{/if}}

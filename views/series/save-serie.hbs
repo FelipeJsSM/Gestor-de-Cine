@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-12 col-sm-6 offset-sm-3">
+
+        <div class="card">
+            <div class="card-header bg-primary text-light">
+                Formulario de serie
+            </div>
+            <div class="card-body">
+
+                <form id="serieForm" method="POST" action="/admin/series/{{#if editMode}}edit-serie{{else}}add-serie{{/if}}">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" {{#if editMode}} value="{{serie.name}}" {{/if}} class="form-control"
+                            id="title" name="Name" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image url:</label>
+                        <input type="text" {{#if editMode}} value="{{serie.imageURL}}" {{/if}} class="form-control"
+                            id="image" name="imageURL" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="video" class="form-label">Video url:</label>
+                        <input type="text" {{#if editMode}} value="{{serie.videoURL}}" {{/if}} class="form-control"
+                            id="video" name="videoURL" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="genreName" class="form-label">Genero</label>
+                        <select class="form-select" id="genreName" name="genreName">
+                            <option value="">Selecciona una opcion</option>
+                            {{#each genres}}
+                            <option value="{{this.name}}" {{#if (eq this.name ../serie.genreName)}}selected{{/if}}>
+                                {{this.name}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    {{#if editMode}}
+                    <input type="hidden" value="{{serie.id}}" name="SerieId">
+                    {{/if}}
+
+                    <button type="submit" class="btn btn-primary float-end">Save</button>
+                    <a href="/admin/series" class="btn btn-warning float-end me-2">Back to list</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
